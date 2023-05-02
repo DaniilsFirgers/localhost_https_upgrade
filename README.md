@@ -24,4 +24,12 @@ Certified authorities distribute their certificates to computers worlwide via in
 
 ---
 
-We can go through the same procedure and act as a CA as weel as issue a certificate for our domain name. Note - **Do not use self-signed sertificates in production!**
+We can go through the same procedure and act as a CA as weel as issue a certificate for our domain name. Note - **Do not use self-signed sertificates in production!**. One way is to use mkcert [MkCert](https://github.com/FiloSottile/mkcert). But in this guide wel will do it ourselves.
+
+## Certificate Authority (CA)
+
+---
+
+Firstly we will generate a self-signed root certificate authority called localCA using OpenSSL:
+
+`openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout localCA.key -out localCA.pem -subj "/C=US/CN=local-Root-CA"`
