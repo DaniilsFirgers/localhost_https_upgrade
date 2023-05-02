@@ -1,4 +1,4 @@
-# Upgrade http to htpps in local development
+# Upgrade http to https in local development
 
 Sometimes there could be a need to upgrade your local development application to **behave like an HTTPS site**, so that it competely emulates your production version.
 
@@ -14,3 +14,14 @@ In order to do so you have to have a TLS/SSL certificate. However browsers will 
 4. Choose authorities tab
 
 - Mozilla
+
+1. Click on settings icon and go to 'Manage more settings'
+2. Select Privacy & Security and scroll until Security part
+3. Click on view certificates
+4. Select authorities
+
+Certified authorities distribute their certificates to computers worlwide via intermediaries that distribute certificates securely and reliably.
+
+---
+
+We can go through the same procedure and act as a CA as weel as issue a certificate for our domain name. Note - **Do not use self-signed sertificates in production!**
