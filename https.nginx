@@ -1,4 +1,10 @@
 server {
+    listen 80;
+    server_name example.local.net www.example.local.net;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
         listen 443 ssl;
         ssl_certificate /etc/nginx/ssl/certs/localhost.crt;
         ssl_certificate_key /etc/nginx/ssl/certs/localhost.key;
