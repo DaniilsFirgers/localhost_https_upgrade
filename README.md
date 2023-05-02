@@ -24,7 +24,7 @@ Certified authorities distribute their certificates to computers worlwide via in
 
 ---
 
-We can go through the same procedure and act as a CA as weel as issue a certificate for our domain name. Note - **Do not use self-signed sertificates in production!**. One way is to use mkcert [MkCert](https://github.com/FiloSottile/mkcert). But in this guide wel will do it ourselves.
+We can go through the same procedure and act as a CA as weel as issue a certificate for our domain name. Note - **Do not use self-signed sertificates in production!** One way is to use mkcert [MkCert](https://github.com/FiloSottile/mkcert). But in this guide wel will do it ourselves.
 
 ## Certificate Authority (CA)
 
@@ -41,3 +41,15 @@ You can change -days flag, which specifies the number of days fo which the certi
 ```
 openssl x509 -outform pem -in localCA.pem -out localCA.crt
 ```
+
+## Domain name certificate
+
+In this example we will create the certirficate for one domain name. Let's say it is `example.local.net`. A general rule of thumb is to avoid the followinf domain names for local development: .dev , .local , .localhost, .test. Those can be reserved by Google Chrome and lead to some weird unexpected behaviour.
+
+After you chose the domain name, you should go to `/etc/hosts` and add your custom domain name after localhost to the list like this:
+
+```
+127.0.0.1 example.local.net
+```
+
+**Do delete the starting file content!**
