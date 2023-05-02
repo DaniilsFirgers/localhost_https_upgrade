@@ -46,10 +46,22 @@ openssl x509 -outform pem -in localCA.pem -out localCA.crt
 
 In this example we will create the certirficate for one domain name. Let's say it is `example.local.net`. A general rule of thumb is to avoid the followinf domain names for local development: .dev , .local , .localhost, .test. Those can be reserved by Google Chrome and lead to some weird unexpected behaviour.
 
-After you chose the domain name, you should go to `/etc/hosts` and add your custom domain name after localhost to the list like this:
+1. After you chose the domain name, you should go to `/etc/hosts` and add your custom domain name after localhost to the list like this:
 
 ```
 127.0.0.1 example.local.net
 ```
 
-**Do delete the starting file content!**
+**Do not delete the starting file content!**
+
+2. Create a domains.ext file that include your local domain:
+
+```
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = localhost
+DNS.2 = example.local.net
+```
