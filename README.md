@@ -28,8 +28,16 @@ We can go through the same procedure and act as a CA as weel as issue a certific
 
 ## Certificate Authority (CA)
 
----
+1. Firstly we will generate a self-signed root certificate authority called localCA using OpenSSL:
 
-Firstly we will generate a self-signed root certificate authority called localCA using OpenSSL:
+```
+openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout localCA.key -out localCA.pem -subj "/C=US/CN=local-Root-CA"
+```
 
-`openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout localCA.key -out localCA.pem -subj "/C=US/CN=local-Root-CA"`
+You can change -days flag, which specifies the number of days fo which the certificate will be valid, -keyout flag that specifies the filename for the private key, -out flag that specifies the filename of the self-signed certificate file as well as -subj flag.
+
+2. Next we convert the self-signed certificate from PEM to CRT format:
+
+```
+openssl x509 -outform pem -in localCA.pem -out localCA.crt
+```
